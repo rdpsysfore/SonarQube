@@ -24,9 +24,9 @@ jobs:
           curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-7.2.0.5079-linux-x64.zip
           unzip sonar-scanner.zip
 
-      - name: Clean invalid class files from src
+      - name: Clean compiled files from source
         run: |
-          find GUI-based-Algorithm-Calculator-master/src -name "*.class" -delete || true
+          find GUI-based-Algorithm-Calculator-master -name "*.class" -delete || true
 
       - name: Run SonarQube Scan
         env:
@@ -36,8 +36,8 @@ jobs:
           ./sonar-scanner-7.2.0.5079-linux-x64/bin/sonar-scanner \
             -Dsonar.projectKey=GUI-Algorithm-Calculator \
             -Dsonar.projectName="GUI Algorithm Calculator" \
-            -Dsonar.sources=GUI-based-Algorithm-Calculator-master/src \
-            -Dsonar.exclusions=**/*.class \
+            -Dsonar.sources=GUI-based-Algorithm-Calculator-master \
+            -Dsonar.exclusions=**/*.class,**/bin/** \
             -Dsonar.host.url=$SONAR_HOST_URL \
             -Dsonar.login=$SONAR_TOKEN \
             -X
