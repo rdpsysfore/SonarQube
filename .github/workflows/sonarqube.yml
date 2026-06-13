@@ -9,7 +9,6 @@ jobs:
 sonar:
 runs-on: ubuntu-latest
 
-```
 steps:
   - name: Checkout Source
     uses: actions/checkout@v4
@@ -37,7 +36,3 @@ steps:
       -Dsonar.java.binaries=GUI-based-Algorithm-Calculator-master/bin \
       -Dsonar.host.url=$SONAR_HOST_URL \
       -Dsonar.token=$SONAR_TOKEN
-```
-
-
-
