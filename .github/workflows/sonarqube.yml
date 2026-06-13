@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -21,8 +21,8 @@ jobs:
 
       - name: Download SonarScanner
         run: |
-          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-7.2.0.5079-linux-x64.zip
-          unzip sonar-scanner-7.2.0.5079-linux-x64.zip
+          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-7.2.0.5079-linux-x64.zip
+          unzip sonar-scanner.zip
 
       - name: Run SonarQube Scan
         env:
@@ -31,12 +31,9 @@ jobs:
         run: |
           ./sonar-scanner-7.2.0.5079-linux-x64/bin/sonar-scanner \
             -Dsonar.projectKey=GUI-Algorithm-Calculator \
-            -Dsonar.projectName=GUI-Algorithm-Calculator \
+            -Dsonar.projectName="GUI Algorithm Calculator" \
             -Dsonar.sources=GUI-based-Algorithm-Calculator-master/src \
             -Dsonar.java.binaries=GUI-based-Algorithm-Calculator-master/bin \
             -Dsonar.host.url=$SONAR_HOST_URL \
             -Dsonar.login=$SONAR_TOKEN \
             -X
-
-
-            
