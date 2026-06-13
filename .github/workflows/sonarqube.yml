@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      
+
 jobs:
   sonar:
     runs-on: ubuntu-latest
@@ -36,5 +36,3 @@ jobs:
             -Dsonar.java.binaries=GUI-based-Algorithm-Calculator-master/bin \
             -Dsonar.host.url=${SONAR_HOST_URL} \
             -Dsonar.token=${SONAR_TOKEN}
-
-
