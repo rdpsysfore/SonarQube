@@ -1,5 +1,4 @@
 name: Test
-name: Test
 
 on:
 push:
@@ -10,5 +9,3 @@ runs-on: ubuntu-latest
 
 steps:
   - run: echo Hello
-
-
