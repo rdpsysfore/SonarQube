@@ -8,7 +8,7 @@ Algorithm calculator is a graphical user interface application   software. Where
 Algorithm calculator is GUI based application developed using JAVA programming language and its supportive packages for GUI support. In this application there are two frames. First frame is main menu and it contains 6 different type of sorting algorithms’ button. When user click on anyone button it open next frame which contain input text area, submit button, output text area and open code button. By entering proper input when user submit it, the output text area get output string which describes sorted integer array of given integer input. “Open Code” button opens the text file which contain source code of particular sorting algorithm.
 	To complete this mini project many java features and many sorting algorithms are used as a part of learning process. Those are as follows:
 
-
+Test GitHub Action
 
       1.	Java Swing (Graphical User Interface widget toolkit for java)
       2.	Java AWT (Abstract Window Toolkit)
