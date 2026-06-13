@@ -24,21 +24,16 @@ jobs:
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-7.2.0.5079-linux-x64.zip
           unzip sonar-scanner-7.2.0.5079-linux-x64.zip
 
-      - name: Verify Scanner Folder
-        run: ls -R sonar-scanner-7.2.0.5079-linux-x64
-
       - name: Run SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
-          set -e
-
           ./sonar-scanner-7.2.0.5079-linux-x64/bin/sonar-scanner \
             -Dsonar.projectKey=GUI-Algorithm-Calculator \
             -Dsonar.projectName=GUI-Algorithm-Calculator \
             -Dsonar.sources=GUI-based-Algorithm-Calculator-master/src \
             -Dsonar.java.binaries=GUI-based-Algorithm-Calculator-master/bin \
             -Dsonar.host.url=$SONAR_HOST_URL \
-            -Dsonar.token=$SONAR_TOKEN \
-            -Dsonar.verbose=true
+            -Dsonar.login=$SONAR_TOKEN \
+            -X
