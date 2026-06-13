@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -24,6 +24,10 @@ jobs:
           curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-7.2.0.5079-linux-x64.zip
           unzip sonar-scanner.zip
 
+      - name: Clean invalid class files from src
+        run: |
+          find GUI-based-Algorithm-Calculator-master/src -name "*.class" -delete || true
+
       - name: Run SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -33,7 +37,7 @@ jobs:
             -Dsonar.projectKey=GUI-Algorithm-Calculator \
             -Dsonar.projectName="GUI Algorithm Calculator" \
             -Dsonar.sources=GUI-based-Algorithm-Calculator-master/src \
-            -Dsonar.java.binaries=GUI-based-Algorithm-Calculator-master/bin \
+            -Dsonar.exclusions=**/*.class \
             -Dsonar.host.url=$SONAR_HOST_URL \
             -Dsonar.login=$SONAR_TOKEN \
             -X
