@@ -13,14 +13,26 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Verify Project Structure
+        run: |
+          echo "Current Directory:"
+          pwd
+          echo ""
+          echo "Project Structure:"
+          ls -R
+          echo ""
+          echo "Compiled Classes:"
+          find GUI-based-Algorithm-Calculator-master/bin -name "*.class"
+
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
           args: >
             -Dsonar.projectKey=GUI-Algorithm-Calculator
-            -Dsonar.projectName=GUI-Algorithm-Calculator
-            -Dsonar.sources=GUI-based-Algorithm-Calculator-master
-            -Dsonar.exclusions=**/*.class,**/bin/**
+            -Dsonar.projectName="GUI Algorithm Calculator"
+            -Dsonar.sources=GUI-based-Algorithm-Calculator-master/src
+            -Dsonar.java.binaries=GUI-based-Algorithm-Calculator-master/bin
+            -Dsonar.exclusions=**/*.class
